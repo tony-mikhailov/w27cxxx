@@ -1,0 +1,466 @@
+Краткое описание алгоритмов программатора
+
+VCC - напряжение питания = напряжению на пине 5V Ардуино
+VPP - высокое напряжение для программирования по даташиту (устанавливается вручную)
+VPE - высокое напряжение для стирания по даташиту (устанавливается вручную)
+VH  - высокое напряжение для Autoselect по даташиту (устанавливается вручную)
+VIL - низкий логический уровень
+VIH - высокий логический уровень
+Ax  - пины адресов
+
+
+Алгоритм 27Cxxx
+----------------
+Read:
+ 1. Pin Vcc - VCC 
+ 2. Pin CE  - VIL
+ 3. Pin OE  - VIL
+ 4. Pin PGM - VIH (если пин отдельный)
+ 5. Pin Vpp - VIH (если пин отдельный)
+ 6. Последовательное побайтное чтение
+
+Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin CE  - VIL (только для 27C16)
+ 5. Pin PGM - VIL (если пин отдельный)
+ 6. Pin Vpp - VPP
+ 7. Последовательная побайтная запись: 
+    * Pin CE - VIL (Pin CE - VIH для 27C16)
+    * tPW - время импульса программирования байта (по даташиту) 
+    * Pin CE - VIH (Pin CE - VIL для 27C16)
+ - Перед записью чип должен быть пуст (FF)
+
+Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pins Ax - VIL
+ 5. Pin Vpp - VPE
+ 6. Pin A9  - VPE
+ 7. Pin CE  - VIL 
+ 8. 105 микросекунд
+ 9. Pin CE  - VIH
+ - Доступно только для чипов Winbond и Silicon Storage Technology после Autoselect и если определено напряжение стирания.
+
+Autoselect:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIL
+ 3. Pin OE  - VIL
+ 4. Pin PGM - VIH (если пин отдельный)
+ 5. Pin Vpp - VIH (если пин отдельный)
+ 6. Pins Ax - VIL
+ 7. Pin A9  - VH
+ 8. Pin A0  - VIL (чтение Manufacturer Code)
+ 9. Pin A0  - VIH (чтение Device Code)
+
+
+Алгоритм 28Cxxx
+----------------
+Read:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Последовательное побайтное чтение
+
+Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. При необходимости запись кода Software Data Protection Disable 
+ 6. Последовательная PageWrite запись: 
+     * Pin CE - VIL
+     * 5 микросекунд
+     * Pin CE - VIH
+ 7. 10 миллисекунд (пауза необходимая для записи блока - tWC)
+ 8. При необходимости запись кода Software Data Protection Enable 
+ - PageWrite - количество байт записи (по даташиту)
+ - Время загрузки байта tBLC = 40 микросекунд
+ - Перед записью стирать чип не нужно
+
+Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIH
+ 5. Pin OE  - VPE
+ 6. Pin CE  - VIL
+ 7. Pin WE  - VIL
+ 8. 20 микросекунд
+ 9. Pin WE  - VIH
+10. Pin CE  - VIH
+
+Soft Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Запись кода (CE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x80;
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x10.
+ 6. 50 миллисекунд 
+   
+Device Identification Read:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Pin A9  - VH
+ 6. Последовательное побайтное чтение с адресов:
+     * 0x7E0   - 0x7FF   (32 байта для 28C16, 28C17)
+     * 0x1FE0  - 0x1FFF  (32 байта для 28C64)
+     * 0x1FC0  - 0x1FFF  (64 байта для 28C64)
+     * 0x7FC0  - 0x7FFF  (64 байта для 28C256)
+     * 0x1FF80 - 0x1FFFF (128 байт для 28C010)
+     * 0x7FF80 - 0x7FFFF (128 байт для 28C040)
+
+Device Identification Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Pin A9  - VH
+ 6. Последовательная побайтная запись данных по адресам:
+     0x7E0   - 0x7FF   (32 байта для 28C16, 28C17);
+     0x1FE0  - 0x1FFF  (32 байта для 28C64);
+     0x1FC0  - 0x1FFF  (64 байта для 28C64);
+     0x7FC0  - 0x7FFF  (64 байта для 28C256);
+     0x1FF80 - 0x1FFFF (128 байт для 28C010);
+     0x7FF80 - 0x7FFFF (128 байт для 28C040);
+
+Software Data Protection Disable:
+ 1. Запись кода (CE pulses):
+     * Для 28C16:
+        Адрес - 0x555, данные - 0xAA;
+        Адрес - 0x2AA, данные - 0x55;
+        Адрес - 0x555, данные - 0x80;
+        Адрес - 0x555, данные - 0xAA;
+        Адрес - 0x2AA, данные - 0x55;
+        Адрес - 0x555, данные - 0x20.
+     * Для 28C64:
+        Адрес - 0x1555, данные - 0xAA;
+        Адрес - 0x0AAA, данные - 0x55;
+        Адрес - 0x1555, данные - 0x80;
+        Адрес - 0x1555, данные - 0xAA;
+        Адрес - 0x0AAA, данные - 0x55;
+        Адрес - 0x1555, данные - 0x20.
+     * Для остальных:
+        Адрес - 0x5555, данные - 0xAA;
+        Адрес - 0x2AAA, данные - 0x55;
+        Адрес - 0x5555, данные - 0x80;
+        Адрес - 0x5555, данные - 0xAA;
+        Адрес - 0x2AAA, данные - 0x55;
+        Адрес - 0x5555, данные - 0x20.
+ 2. 10 миллисекунд 
+
+Software Data Protection Enable:
+ 1. Запись кода (CE pulses):
+     * Для 28C16:
+        Адрес - 0x555, данные - 0xAA;
+        Адрес - 0x2AA, данные - 0x55;
+        Адрес - 0x555, данные - 0xA0.
+     * Для 28C64:
+        Адрес - 0x1555, данные - 0xAA;
+        Адрес - 0x0AAA, данные - 0x55;
+        Адрес - 0x1555, данные - 0xA0.
+     * Для остальных:
+        Адрес - 0x5555, данные - 0xAA;
+        Адрес - 0x2AAA, данные - 0x55;
+        Адрес - 0x5555, данные - 0xA0.
+ 2. 10 миллисекунд 
+
+
+Алгоритм 28Fxxx
+----------------
+Read:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Последовательное побайтное чтение
+
+Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Pin Vpp - VPP
+ 6. Последовательная побайтная запись (25 попыток): 
+     * Запись кода (CE pulses): данные - 0x40
+     * Запись данных по адресу байта (CE pulses)   
+     * Запись кода(CE pulses): данные - 0xC0
+     * Pin WE - VIH
+     * Pin CE - VIL
+     * Pin OE - VIL
+     * Чтение байта (проверка записи)
+     * Pin CE - VIH
+     * Pin OE - VIH
+     * Pin WE - VIL
+ 7. Команда Reset:
+     * Запись кода (CE pulses): данные - 0xFF
+     * Запись кода (CE pulses): данные - 0xFF
+ - Перед записью чип должен быть пуст (FF)
+
+Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Pin Vpp - VPP
+ 6. Последовательная побайтная запись данных 0x00 (25 попыток): 
+     * Запись кода (CE pulses): данные - 0x40
+     * Запись данных 0x00 по адресу байта (CE pulses)    
+     * Запись кода (CE pulses): данные - 0xC0
+     * Pin WE - VIH
+     * Pin CE - VIL
+     * Pin OE - VIL
+     * Чтение байта (проверка записи)
+     * Pin CE - VIH
+     * Pin OE - VIH
+     * Pin WE - VIL
+ 7. Команда Reset:
+     * Запись кода (CE pulses): данные - 0xFF
+     * Запись кода (CE pulses): данные - 0xFF
+ 8. Стирание чипа (1000 попыток):
+     * Запись кода (CE pulses): данные - 0x20
+     * Запись кода (CE pulses): данные - 0x20
+     * 10 миллисекунд
+     * Запись кода (CE pulses): данные - 0xA0
+     * Pin WE  - VIH
+     * Pin CE  - VIL
+     * Pin OE  - VIL
+     * Последовательное чтение байт (проверка стирания)
+     * Pin CE  - VIH
+     * Pin OE  - VIH
+     * Pin WE  - VIL
+ 9. Команда Reset:
+     * Запись кода (CE pulses): данные - 0xFF
+     * Запись кода (CE pulses): данные - 0xFF
+
+Autoselect:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 6. Pins Ax - VIL
+ 7. Pin A9  - VH
+ 8. Pin A0  - VIL (чтение Manufacturer Code)
+ 9. Pin A0  - VIH (чтение Device Code)
+
+
+Алгоритм 29Cxxx
+----------------
+Read:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Последовательное побайтное чтение
+
+Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. При необходимости запись кода Software Data Protection Disable 
+ 6. Последовательная PageWrite запись: 
+     * Pin CE  - VIL
+     * 5 микросекунд
+     * Pin CE  - VIH
+ 7. 10 миллисекунд (пауза необходимая для записи блока - tWc)
+ 8. При необходимости запись кода Software Data Protection Enable 
+ - PageWrite - количество байт записи (по даташиту)
+ - Время загрузки байта tBLC = 40 микросекунд
+ - Перед записью стирать чип не нужно
+
+Soft Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Запись кода (CE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x80;
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x10.
+ 6. 50 миллисекунд 
+   
+Autoselect:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Pins Ax - VIL
+ 6. Pin A9  - VH
+ 7. Pin A0  - VIL (чтение Manufacturer Code)
+ 8. Pin A0  - VIH (чтение Device Code)
+
+Soft Autoselect:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pins Ax - VIL
+ 4. Pin OE  - VIH
+ 5. Pin CE  - VIL
+ 6. Запись кода (WE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x90;
+ 7. Pin WE  - VIH
+ 8. 10 микросекунд
+ 9. Pin OE  - VIL
+10. Pin A0  - VIL (чтение Manufacturer Code)
+11. Pin A0  - VIH (чтение Device Code)
+12. Pin CE  - VIH
+13. Pin OE  - VIH
+14. Pin WE  - VIL
+15. Запись кода (CE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0xF0.
+
+Software Data Protection Disable:
+ 1. Запись кода (CE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x80;
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0x20.
+ 2. 10 миллисекунд 
+
+Software Data Protection Enable:
+ 1. Запись кода (CE pulses):
+     * Адрес - 0x5555, данные - 0xAA;
+     * Адрес - 0x2AAA, данные - 0x55;
+     * Адрес - 0x5555, данные - 0xA0.
+ 2. 10 миллисекунд 
+
+
+Алгоритм 29Fxxx
+----------------
+Read:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 5. Последовательное побайтное чтение
+
+Write:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Последовательная побайтная запись:
+    * Запись кода (CE pulses): 
+       Адрес - 0x5555, данные - 0xAA;
+       Адрес - 0x2AAA, данные - 0x55;   
+       Адрес - 0x5555, данные - 0xA0.
+    * Запись байта по адресу:
+       Pin CE  - VIL
+       5 микросекунд
+       Pin CE  - VIH
+    * 100 микросекунд
+ 6. Команда Reset:
+    * Запись кода (CE pulses): данные - 0xF0
+
+Soft Erase:
+ 1. Pin Vcc - VCC
+ 2. Pin CE  - VIH
+ 3. Pin OE  - VIH
+ 4. Pin WE  - VIL
+ 5. Запись кода (CE pulses):
+    * Адрес - 0x5555, данные - 0xAA;
+    * Адрес - 0x2AAA, данные - 0x55;
+    * Адрес - 0x5555, данные - 0x80;
+    * Адрес - 0x5555, данные - 0xAA;
+    * Адрес - 0x2AAA, данные - 0x55;
+    * Адрес - 0x5555, данные - 0x10.
+ 6. 5 секунд
+ 7. Команда Reset:
+    * Запись кода (CE pulses): данные - 0xF0
+   
+Autoselect:
+ 1. Pin Vcc - VCC
+ 2. Pin WE  - VIH
+ 3. Pin CE  - VIL
+ 4. Pin OE  - VIL
+ 6. Pins Ax - VIL
+ 7. Pin A9  - VH
+ 8. Pin A0  - VIL (чтение Manufacturer Code)
+ 9. Pin A0  - VIH (чтение Device Code)
+
+
+Алгоритм Static RAM
+-------------------
+Test:
+ 1. Write:
+    * Pin Vcc - VCC
+    * Pin CE  - VIH
+    * Pin OE  - VIH
+    * Pin WE  - VIL
+    * Pin CE2 - VIH
+    * Последовательная побайтная запись:
+       Pin CE - VIL
+       5 микросекунд
+       Pin CE - VIH
+ 2. Read:
+    * Pin Vcc - VCC
+    * Pin WE  - VIH
+    * Pin CE  - VIL
+    * Pin OE  - VIL
+    * Pin CE2 - VIH
+    * Последовательное побайтное чтение
+
+
+Алгоритм Dynamic RAM
+--------------------
+Test 1:
+ * Запись бита 0 по адресу 0
+ * Чтение бита 0 по адресу 0
+ * Запись бита 1 по адресу 1
+ * Чтение бита 1 по адресу 1
+ * Запись бита 0 по адресу 2
+ * Чтение бита 0 по адресу 2
+ * Запись бита 1 по адресу 3
+ * Чтение бита 1 по адресу 3
+ * и т.д.
+
+Test 2:
+ * Запись бита 1 по адресу 0
+ * Чтение бита 1 по адресу 0
+ * Запись бита 0 по адресу 1
+ * Чтение бита 0 по адресу 1
+ * Запись бита 1 по адресу 2
+ * Чтение бита 1 по адресу 2
+ * Запись бита 0 по адресу 3
+ * Чтение бита 0 по адресу 3
+ * и т.д.
+
+Test 3:       
+ * Последовательная побитная запись (0,1,0,1 и т.д.)
+ * Последовательное побитное чтение (0,1,0,1 и т.д.)
+
+Test 4:       
+ * Последовательная побитная запись (1,0,1,0 и т.д.)
+ * Последовательное побитное чтение (1,0,1,0 и т.д.)
+
+Test 5:       
+ * Запись бита 0 по адресу 0
+ * Чтение бита 0 по адресу 0
+ * Запись бита 0 по адресу 1
+ * Чтение бита 0 по адресу 1
+ * Запись бита 0 по адресу 2
+ * Чтение бита 0 по адресу 2
+ * Запись бита 0 по адресу 3
+ * Чтение бита 0 по адресу 3
+ * и т.д.
+
