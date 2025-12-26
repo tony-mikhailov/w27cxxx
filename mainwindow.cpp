@@ -2162,11 +2162,11 @@ void MainWindow::on_saveFileButton_clicked()
 void MainWindow::on_showButton_toggled(bool checked)
 {
     if(checked) {
-        this->setFixedSize(QSize(795, 550));
+//        this->setFixedSize(QSize(795, 550));
         updateBufConnection = QObject::connect(this, SIGNAL(bufferUpdated()), this, SLOT(showBuf()));
         emit bufferUpdated();
     } else {
-        this->setFixedSize(QSize(390, 550));
+//        this->setFixedSize(QSize(390, 550));
         QObject::disconnect(updateBufConnection);
     }
 }
