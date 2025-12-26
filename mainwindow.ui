@@ -1,0 +1,2169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>EPROM Programmer and Logic Tester</string>
+  </property>
+  <property name="animated">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QGroupBox" name="serialPort">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Serial port</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QListWidget" name="portList">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>82</width>
+               <height>72</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="updateButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Update list</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="connectButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Connect</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="disconnectButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Disconnect</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="chipType">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="title">
+           <string>Chip type</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QTabWidget" name="typeList">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="EPROM">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <attribute name="title">
+               <string>EPROM</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0">
+                <widget class="QTabWidget" name="E_algorithmList">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>241</width>
+                   <height>209</height>
+                  </size>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                 <property name="usesScrollButtons">
+                  <bool>false</bool>
+                 </property>
+                 <widget class="QWidget" name="E27Cxxx">
+                  <attribute name="title">
+                   <string>27Cxxx</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_2">
+                   <item row="0" column="0">
+                    <widget class="QTabWidget" name="E27C_dipList">
+                     <property name="autoFillBackground">
+                      <bool>true</bool>
+                     </property>
+                     <property name="currentIndex">
+                      <number>2</number>
+                     </property>
+                     <property name="usesScrollButtons">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabsClosable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="movable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabBarAutoHide">
+                      <bool>false</bool>
+                     </property>
+                     <widget class="QWidget" name="E27C_dip24">
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <attribute name="title">
+                       <string>DIP24</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_8">
+                       <item>
+                        <widget class="QRadioButton" name="E27c16Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C16</string>
+                         </property>
+                         <property name="checkable">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c32Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C32</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="autoDetectButton">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>Autoselect</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="E27C_dip28">
+                      <attribute name="title">
+                       <string>DIP28</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_7">
+                       <item>
+                        <widget class="QRadioButton" name="E27c64Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C64</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c128Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C128</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c256Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C256</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c512Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C512</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="autoDetectButton2">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>Autoselect</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="E27C_dip32">
+                      <attribute name="title">
+                       <string>DIP32</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <widget class="QRadioButton" name="E27c010Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C010</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c020Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C020</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c040Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C040</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QRadioButton" name="E27c080Button">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>27C080</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="autoDetectButton3">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>Autoselect</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="tab">
+                      <attribute name="title">
+                       <string/>
+                      </attribute>
+                      <widget class="QLabel" name="label">
+                       <property name="geometry">
+                        <rect>
+                         <x>70</x>
+                         <y>20</y>
+                         <width>131</width>
+                         <height>16</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Select DIP package type</string>
+                       </property>
+                      </widget>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="E28Cxxx">
+                  <attribute name="title">
+                   <string>28Cxxx</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_3">
+                   <item row="0" column="0">
+                    <widget class="QTabWidget" name="E28C_dipList">
+                     <property name="autoFillBackground">
+                      <bool>true</bool>
+                     </property>
+                     <property name="currentIndex">
+                      <number>0</number>
+                     </property>
+                     <property name="usesScrollButtons">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabsClosable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="movable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabBarAutoHide">
+                      <bool>false</bool>
+                     </property>
+                     <widget class="QWidget" name="E28C_dip24">
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <attribute name="title">
+                       <string>DIP24</string>
+                      </attribute>
+                      <widget class="QRadioButton" name="E28c04Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>54</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C04</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c16Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>54</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C16</string>
+                       </property>
+                      </widget>
+                      <widget class="QGroupBox" name="deviceIdentification">
+                       <property name="geometry">
+                        <rect>
+                         <x>2</x>
+                         <y>110</y>
+                         <width>250</width>
+                         <height>51</height>
+                        </rect>
+                       </property>
+                       <property name="tabletTracking">
+                        <bool>false</bool>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="title">
+                        <string>Device Identification</string>
+                       </property>
+                       <property name="flat">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checkable">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                       <widget class="QPushButton" name="IdentificationReadButton">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>6</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>23</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>ID Read</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="IdentificationWriteButton">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>189</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Write</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="openID28Button">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>128</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Open</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="saveID28Button">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>67</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Save</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="E28C_dip28">
+                      <attribute name="title">
+                       <string>DIP28</string>
+                      </attribute>
+                      <widget class="QGroupBox" name="deviceIdentification2">
+                       <property name="geometry">
+                        <rect>
+                         <x>2</x>
+                         <y>110</y>
+                         <width>250</width>
+                         <height>51</height>
+                        </rect>
+                       </property>
+                       <property name="tabletTracking">
+                        <bool>false</bool>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="title">
+                        <string>Device Identification</string>
+                       </property>
+                       <property name="flat">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checkable">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                       <widget class="QPushButton" name="IdentificationReadButton2">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>6</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>23</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>ID Read</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="IdentificationWriteButton2">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>189</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Write</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="openID28Button2">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>128</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Open</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="saveID28Button2">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>67</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Save</string>
+                        </property>
+                       </widget>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c17Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C17</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c64Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C64</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c256Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>50</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C256</string>
+                       </property>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="E28C_dip32">
+                      <attribute name="title">
+                       <string>DIP32</string>
+                      </attribute>
+                      <widget class="QGroupBox" name="deviceIdentification3">
+                       <property name="geometry">
+                        <rect>
+                         <x>2</x>
+                         <y>110</y>
+                         <width>250</width>
+                         <height>51</height>
+                        </rect>
+                       </property>
+                       <property name="tabletTracking">
+                        <bool>false</bool>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="title">
+                        <string>Device Identification</string>
+                       </property>
+                       <property name="flat">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checkable">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                       <widget class="QPushButton" name="IdentificationReadButton3">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>6</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>23</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>ID Read</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="IdentificationWriteButton3">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>189</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Write</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="openID28Button3">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>128</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Open</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="saveID28Button3">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                         <rect>
+                          <x>67</x>
+                          <y>18</y>
+                          <width>55</width>
+                          <height>23</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>ID Save</string>
+                        </property>
+                       </widget>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c512Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C512</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c010Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C010</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c020Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>50</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C020</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="E28c040Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>70</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28C040</string>
+                       </property>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="tab2">
+                      <attribute name="title">
+                       <string/>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_9">
+                       <item>
+                        <widget class="QLabel" name="label2">
+                         <property name="text">
+                          <string>Select DIP package type</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="FLASH">
+              <attribute name="title">
+               <string>FLASH</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_6">
+               <item row="0" column="0">
+                <widget class="QTabWidget" name="F_algorithmList">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>241</width>
+                   <height>209</height>
+                  </size>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                 <property name="usesScrollButtons">
+                  <bool>false</bool>
+                 </property>
+                 <widget class="QWidget" name="F28Fxxx">
+                  <attribute name="title">
+                   <string>28Fxxx</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_5">
+                   <item row="0" column="0">
+                    <widget class="QTabWidget" name="F28F_dipList">
+                     <property name="autoFillBackground">
+                      <bool>true</bool>
+                     </property>
+                     <property name="currentIndex">
+                      <number>1</number>
+                     </property>
+                     <property name="usesScrollButtons">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabsClosable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="movable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabBarAutoHide">
+                      <bool>false</bool>
+                     </property>
+                     <widget class="QWidget" name="F28F_dip32">
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <attribute name="title">
+                       <string>DIP32</string>
+                      </attribute>
+                      <widget class="QPushButton" name="autoDetectButton4">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>86</x>
+                         <y>110</y>
+                         <width>81</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Autoselect</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F28f256Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28F256</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F28f512Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28F512</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F28f010Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>50</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28F010</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F28f020Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>70</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>28F020</string>
+                       </property>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="tab3">
+                      <attribute name="title">
+                       <string/>
+                      </attribute>
+                      <layout class="QGridLayout" name="gridLayout_4">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label3">
+                         <property name="text">
+                          <string>Select DIP package type</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="F29Cxxx">
+                  <attribute name="title">
+                   <string>29Cxxx</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_7">
+                   <item row="0" column="0">
+                    <widget class="QTabWidget" name="F29C_dipList">
+                     <property name="autoFillBackground">
+                      <bool>true</bool>
+                     </property>
+                     <property name="currentIndex">
+                      <number>0</number>
+                     </property>
+                     <property name="usesScrollButtons">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabsClosable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="movable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="tabBarAutoHide">
+                      <bool>false</bool>
+                     </property>
+                     <widget class="QWidget" name="F29C_dip28">
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <attribute name="title">
+                       <string>DIP28</string>
+                      </attribute>
+                      <widget class="QPushButton" name="autoDetectButton5">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>30</x>
+                         <y>110</y>
+                         <width>81</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Autoselect</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F29c256Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>61</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>29C256</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="SoftDetectButton">
+                       <property name="geometry">
+                        <rect>
+                         <x>130</x>
+                         <y>110</y>
+                         <width>81</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Soft Detect</string>
+                       </property>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="F29C_dip32">
+                      <attribute name="title">
+                       <string>DIP32</string>
+                      </attribute>
+                      <widget class="QRadioButton" name="F29c512Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>10</y>
+                         <width>151</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>29C512</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F29c010Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>151</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>29C010</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F29c020Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>50</y>
+                         <width>151</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>29C020</string>
+                       </property>
+                      </widget>
+                      <widget class="QRadioButton" name="F29c040Button">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>70</y>
+                         <width>161</width>
+                         <height>17</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>29C040</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="autoDetectButton6">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="geometry">
+                        <rect>
+                         <x>30</x>
+                         <y>110</y>
+                         <width>81</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Autoselect</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="SoftDetectButton2">
+                       <property name="geometry">
+                        <rect>
+                         <x>130</x>
+                         <y>110</y>
+                         <width>81</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Soft  Detect</string>
+                       </property>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="tab4">
+                      <attribute name="title">
+                       <string/>
+                      </attribute>
+                      <layout class="QGridLayout" name="gridLayout_8">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label4">
+                         <property name="text">
+                          <string>Select DIP package type</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="F29Fxxx">
+                  <attribute name="title">
+                   <string>29Fxxx</string>
+                  </attribute>
+                  <widget class="QTabWidget" name="F29F_dipList">
+                   <property name="geometry">
+                    <rect>
+                     <x>-2</x>
+                     <y>0</y>
+                     <width>162</width>
+                     <height>65</height>
+                    </rect>
+                   </property>
+                   <property name="autoFillBackground">
+                    <bool>true</bool>
+                   </property>
+                   <property name="currentIndex">
+                    <number>1</number>
+                   </property>
+                   <property name="usesScrollButtons">
+                    <bool>false</bool>
+                   </property>
+                   <property name="tabsClosable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="movable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="tabBarAutoHide">
+                    <bool>false</bool>
+                   </property>
+                   <widget class="QWidget" name="F29F_dip32">
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <attribute name="title">
+                     <string>DIP32</string>
+                    </attribute>
+                    <widget class="QRadioButton" name="F29f020Button">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>40</x>
+                       <y>50</y>
+                       <width>61</width>
+                       <height>17</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>29F020</string>
+                     </property>
+                    </widget>
+                    <widget class="QRadioButton" name="F29f010Button">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>40</x>
+                       <y>30</y>
+                       <width>61</width>
+                       <height>17</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>29F010</string>
+                     </property>
+                    </widget>
+                    <widget class="QRadioButton" name="F29f040Button">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>40</x>
+                       <y>70</y>
+                       <width>61</width>
+                       <height>17</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>29F040</string>
+                     </property>
+                    </widget>
+                    <widget class="QRadioButton" name="F29f512Button">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>40</x>
+                       <y>10</y>
+                       <width>61</width>
+                       <height>17</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>29F512</string>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="autoDetectButton7">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>86</x>
+                       <y>110</y>
+                       <width>81</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Autoselect</string>
+                     </property>
+                    </widget>
+                   </widget>
+                   <widget class="QWidget" name="tab5">
+                    <attribute name="title">
+                     <string/>
+                    </attribute>
+                    <layout class="QGridLayout" name="gridLayout_9">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label5">
+                       <property name="text">
+                        <string>Select DIP package type</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="RAM">
+              <attribute name="title">
+               <string>RAM</string>
+              </attribute>
+              <widget class="QTabWidget" name="R_algorithmList">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>-1</x>
+                 <y>0</y>
+                 <width>262</width>
+                 <height>209</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>241</width>
+                 <height>209</height>
+                </size>
+               </property>
+               <property name="autoFillBackground">
+                <bool>true</bool>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="usesScrollButtons">
+                <bool>false</bool>
+               </property>
+               <widget class="QWidget" name="SRAM">
+                <attribute name="title">
+                 <string>Static RAM</string>
+                </attribute>
+                <widget class="QTabWidget" name="SRAM_dipList">
+                 <property name="geometry">
+                  <rect>
+                   <x>-2</x>
+                   <y>0</y>
+                   <width>262</width>
+                   <height>187</height>
+                  </rect>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentIndex">
+                  <number>3</number>
+                 </property>
+                 <property name="usesScrollButtons">
+                  <bool>false</bool>
+                 </property>
+                 <property name="tabsClosable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="movable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="tabBarAutoHide">
+                  <bool>false</bool>
+                 </property>
+                 <widget class="QWidget" name="SRAM_dip24">
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
+                  <attribute name="title">
+                   <string>DIP24</string>
+                  </attribute>
+                  <widget class="QRadioButton" name="SRAM16Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>10</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>16K (2K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QPushButton" name="testSRAMButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>86</x>
+                     <y>110</y>
+                     <width>75</width>
+                     <height>23</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Test</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="SRAM_dip28">
+                  <attribute name="title">
+                   <string>DIP28</string>
+                  </attribute>
+                  <widget class="QRadioButton" name="SRAM128Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>50</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>128K (16K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM32Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>10</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>32K (4K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM64Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>30</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>64K (8K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM256Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>70</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>256K (32K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QPushButton" name="testSRAMButton2">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>86</x>
+                     <y>110</y>
+                     <width>75</width>
+                     <height>23</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Test</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="SRAM_dip32">
+                  <attribute name="title">
+                   <string>DIP32</string>
+                  </attribute>
+                  <widget class="QPushButton" name="testSRAMButton3">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>86</x>
+                     <y>110</y>
+                     <width>75</width>
+                     <height>23</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Test</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM040Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>70</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>4096K (512K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM010Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>30</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>1024K (128K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM512Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>10</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>512K (64K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                  <widget class="QRadioButton" name="SRAM020Button">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>50</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>2048K (256K x 8-Bit)</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="tab6">
+                  <attribute name="title">
+                   <string/>
+                  </attribute>
+                  <widget class="QLabel" name="label6">
+                   <property name="geometry">
+                    <rect>
+                     <x>70</x>
+                     <y>20</y>
+                     <width>131</width>
+                     <height>16</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Select DIP package type</string>
+                   </property>
+                  </widget>
+                 </widget>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="DRAM">
+                <attribute name="title">
+                 <string>Dynamic RAM</string>
+                </attribute>
+                <widget class="QRadioButton" name="D4164Button">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>10</y>
+                   <width>121</width>
+                   <height>17</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>4164 (64K x 1-Bit)</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="testDRAMButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="geometry">
+                  <rect>
+                   <x>86</x>
+                   <y>130</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Test</string>
+                 </property>
+                </widget>
+                <widget class="QRadioButton" name="D41256Button">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>30</y>
+                   <width>121</width>
+                   <height>17</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>41256 (256K x 1-Bit)</string>
+                 </property>
+                </widget>
+               </widget>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="LOGIC">
+              <attribute name="title">
+               <string>LOGIC</string>
+              </attribute>
+              <widget class="QPushButton" name="autoTestingButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>120</y>
+                 <width>81</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Auto Find</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="testLogicButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>50</y>
+                 <width>81</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Test</string>
+               </property>
+              </widget>
+              <widget class="QListWidget" name="listLogic">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>7</y>
+                 <width>111</width>
+                 <height>191</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QProgressBar" name="progressBar">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="textVisible">
+           <bool>true</bool>
+          </property>
+          <property name="format">
+           <string>%p%</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="openFileButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Open file</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="voltageChipButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Voltage</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="showButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Show buffer</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveFileButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Save file</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="eraseChipButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Erase</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="verifyChipButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Verify</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="writeChipButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Write</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="readChipButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Read</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QPushButton" name="chipInfoButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Chip Info</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QPushButton" name="clearLogButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Clear log</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="textBrowser">
+            <property name="font">
+             <font>
+              <family>Monospace</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="openLinks">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="font">
+       <font>
+        <family>Monospace</family>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="rowCount">
+       <number>1</number>
+      </property>
+      <property name="columnCount">
+       <number>8</number>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>45</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>0xffff</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>7</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string>00</string>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string>01</string>
+       </property>
+      </item>
+      <item row="0" column="2">
+       <property name="text">
+        <string>02</string>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string>04</string>
+       </property>
+      </item>
+      <item row="0" column="4">
+       <property name="text">
+        <string>08</string>
+       </property>
+      </item>
+      <item row="0" column="5">
+       <property name="text">
+        <string>10</string>
+       </property>
+      </item>
+      <item row="0" column="6">
+       <property name="text">
+        <string>aa</string>
+       </property>
+      </item>
+      <item row="0" column="7">
+       <property name="text">
+        <string>cc</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
