@@ -2351,7 +2351,7 @@ void MainWindow::readChip()
 {
     updateButtons(false, false);
     log(QString("Reading %1 bytes from chip...").arg(bufSize));
-    ui->progressBar->setMaximum(bufSize);
+    ui->progressBar->setMaximum(bufSize - 1);
     ui->progressBar->setValue(0);
     serialDataConnection = QObject::connect(serialPort, SIGNAL(readyRead()), this, SLOT(readData()));
     sendCommand("r");
@@ -2372,7 +2372,9 @@ void MainWindow::readData()
     }
     if(data.count()) {
         memcpy(&(bufWork.data())[count], data.data(), data.count());
+
         count += data.count();
+        log(QString("Readed %1/%2 bytes").arg(count).arg(bufSize) );
     }
     ui->progressBar->setValue(count);
     if(count >= bufSize) {

@@ -1534,7 +1534,7 @@ void set_data(uint8_t data) {
 
 uint8_t read_byte(uint32_t address) {
   set_address(address);
-  delayMicroseconds(2);
+  delayMicroseconds(50);
   return get_data();
 }
 

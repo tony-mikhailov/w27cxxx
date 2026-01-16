@@ -1,0 +1,11 @@
+moc_*.cpp
+moc_*.h
+ui_*.h
+*.o
+Makefile
+build/
+*.pro.user
+w27cxxx_flasher
+.qmake.stash
+.qtc_clangd
+
